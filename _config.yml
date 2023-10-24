@@ -2,14 +2,14 @@
 # General Site Settings
 
 title: Zie Chan
-description: Galada is an easy and simple theme for Jekyll. Dark colors, give it a special exquisite look. A careful approach to design and features make it an ideal solution for a personal blog. # this means to ignore newlines until "baseurl:"
+description: Zie Chan # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://ziechan.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 
 #-------------------------------
 # About Section
-author-name:   Natali Anderson
+author-name:   Zie Chan
 author-avatar: 09.jpg
 
 
