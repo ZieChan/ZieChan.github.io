@@ -92,20 +92,31 @@ $$\begin{equation} \pi_t(a|s)=P(a_t=a|s_t=s) \end{equation}$$
 我们引入状态价值函数$$V_{\pi}(s)$$去衡量在某个规则$$\pi$$下，给定状态$$s$$的的好坏。而这个状态的价值取决于无限步之后的回报。
 
 当$$h=0$$时：
+
 $$\begin{equation} V_{\pi}^0=0 \end{equation}$$
+
 当$$h=1$$时：
+
 $$\begin{equation} V_{\pi}^1=R(s,\pi(s))+V_{\pi}^0 = R(s,a) \end{equation}$$
+
 当$$h=2$$时：
+
 $$\begin{equation} V_{\pi}^2=R(s,\pi(s))+\sum_{s’}T(s,\pi(s),s’)R(s’,\pi(s’)) \end{equation}$$
+
 对于任意$$h$$：
+
 $$\begin{equation} V_{\pi}^h=R(s,\pi(s))+\sum_{s’}T(s,\pi(s),s’)V_{\pi}^{h-1} (s') \end{equation}$$
+
 从上面也可以看出$$V_{\pi}^h$$是由$$V_{\pi}^{h-1}$$递归计算得到的。
 
 而状态价值函数同时也是回报的期望：
+
 $$\begin{equation} V_{\pi}(s)= E_{\pi}[g_t|s_t=s]=E_{\pi}[\sum_k \gamma^k r_{t+k+1}|s_t=s] \end{equation}$$
+
 在这里我们引入一个折扣率(discount rate) $$\gamma$$，当$$\gamma \to 0$$代表越重视近期的影响，并且忽视长期影响，若$$\gamma \to 1$$则代表越重视长期的影响，对近期影响的考虑逐渐下降。而$$g:S\to Y$$代表着根据观察环境，从状态state得到回报的函数。
 
 当$$h=\infty$$时
+
 $$\begin{equation} \begin{split} 
 V_{\pi}(s)&=E[\sum_{t=0}^{\infty} \gamma^t R_t|\pi,s_0]\\
 &=E[R_0+\gamma R_1+\gamma^2 R_2+\cdots |\pi,s_0=s]\\
@@ -115,19 +126,30 @@ V_{\pi}(s)&=E[\sum_{t=0}^{\infty} \gamma^t R_t|\pi,s_0]\\
 
 ### 2.2 动作价值函数 Action Value Function
 与状态价值函数类似，我们可以用动作价值函数$$Q_{\pi}^h(s,a)$$在某个policy下动作价值的好坏。同样是对于policy $$\pi$$，horizon$$h$$，state $$s$$和action$$a$$。
+
 当$$h=0$$时：
+
 $$\begin{equation} Q_{\pi}^0=0 \end{equation}$$
+
 当$$h=1$$时：
+
 $$\begin{equation} Q_{\pi}^1=R(s,\pi(s))+0 = R(s,a) \end{equation}$$
+
 当$$h=2$$时：
+
 $$\begin{equation} Q_{\pi}^2=R(s,\pi(s))+\sum_{s’}T(s,\pi(s),s’)\max_{a'}R(s’,a') \end{equation}$$
+
 对于任意$$h$$：
+
 $$\begin{equation} Q_{\pi}^h=R(s,\pi(s))+\sum_{s’}T(s,\pi(s),s’))\max_{a'}Q_{\pi}^{h-1} (s',a') \end{equation}$$
+
 当有$$n$$个states，$$|S|=n$$,$$m$$个actions，$$|A|=m$$且horizon为$$h$$时，$$Q_{\pi}^h(s,a)$$的时间复杂度为$$O(nmh）$$。
 与State Value Function 类似，当我们考虑$$\gamma$$和$$g$$时：
+
 $$\begin{equation} Q_{\pi}(s,a)= E_{\pi}[g_t|s_t=s,a_t=a]=E_{\pi}[\sum_k \gamma^k r_{t+k+1}|s_t=s,a_t=a] \end{equation}$$
 
 而$$V_{\pi}(s)$$与$$Q_{\pi}(s,a)$$之间是有联系的，它们之间的关系为：
+
 $$\begin{equation} V_{\pi}(s)=\sum_a \pi(a|s)Q_{\pi}(s,a) \end{equation}$$
 
 
