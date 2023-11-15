@@ -21,7 +21,7 @@ usemath: latex
 要介绍强化学习的原理，就得说到Markov Process和Markov Decision Processes，毕竟它们可以说是强化学习的基础。
 
 ### 1.1 Markov Process
-简单介绍一下Markov Process。在Markov Process中，state、action都是已知的（暂时忽略reward）。首先我们进行一些数学符号的定义：state的集合为$$S$$，action的集合为$$A$$，当前的state为$$s$$，由当前状态选择的action为$$a$$，做出行为$$a$$后到达的状态为$$s’$$，转移模型（transition model）为$$T$$，转移矩阵（transition matrix）为$P(s,a,s’)$。
+简单介绍一下Markov Process。在Markov Process中，state、action都是已知的（暂时忽略reward）。首先我们进行一些数学符号的定义：state的集合为$$S$$，action的集合为$$A$$，当前的state为$$s$$，由当前状态选择的action为$$a$$，做出行为$$a$$后到达的状态为$$s’$$，转移模型（transition model）为$$T$$，转移矩阵（transition matrix）为$$P(s,a,s’)$$。
 
 让我们假设下面这种情景：某个机器人存在三种状态（state），即$$state = S = \{ standing, moving, fallen\}$$，两种动作（action），即$$action = A = \{ slow, fast\}$$。而每个状态（state）下的做出各个动作（action）的概率在Markov Process中是已知的。
 
