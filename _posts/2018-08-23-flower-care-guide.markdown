@@ -1,3 +1,4 @@
+
 ---
 layout: post
 title:  Flower Care Guide
@@ -96,8 +97,39 @@ $$\begin{equation} V_{\pi}^0=0 \end{equation}$$
 $$\begin{equation} V_{\pi}^1=R(s,\pi(s))+V_{\pi}^0 = R(s,a) \end{equation}$$
 当$$h=2$$时：
 $$\begin{equation} V_{\pi}^2=R(s,\pi(s))+\sum_{s’}T(s,\pi(s),s’)R(s’,\pi(s’)) \end{equation}$$
+对于任意$$h$$：
+$$\begin{equation} V_{\pi}^h=R(s,\pi(s))+\sum_{s’}T(s,\pi(s),s’)V_{\pi}^{h-1} (s') \end{equation}$$
+从上面也可以看出$$V_{\pi}^h$$是由$$V_{\pi}^{h-1}$$递归计算得到的。
 
-The state value function V for a policy pi measures how good it is for the agent to be in a given state in terms of expected future rewards for an infinite horizon.
+而状态价值函数同时也是回报的期望：
+$$\begin{equation} V_{\pi}(s)= E_{\pi}[g_t|s_t=s]=E_{\pi}[\sum_k \gamma^k r_{t+k+1}|s_t=s] \end{equation}$$
+在这里我们引入一个折扣率(discount rate) $$\gamma$$，当$$\gamma \to 0$$代表越重视近期的影响，并且忽视长期影响，若$$\gamma \to 1$$则代表越重视长期的影响，对近期影响的考虑逐渐下降。而$$g:S\to Y$$代表着根据观察环境，从状态state得到回报的函数。
+
+当$$h=\infty$$时
+$$\begin{equation} \begin{split} 
+V_{\pi}(s)&=E[\sum_{t=0}^{\infty} \gamma^t R_t|\pi,s_0]\\
+&=E[R_0+\gamma R_1+\gamma^2 R_2+\cdots |\pi,s_0=s]\\
+&=E[R_0+\gamma(R_1+\gamma (R_2+\cdots))|\pi,s_0=s]\\
+&=R(s,\pi(s))+\gamma\sum_{s'}T(s,\pi(s),s')V_{\pi}(s')
+\end{split} \end{equation}$$
+
+### 2.2 动作价值函数 Action Value Function
+与状态价值函数类似，我们可以用动作价值函数$$Q_{\pi}^h(s,a)$$在某个policy下动作价值的好坏。同样是对于policy $$\pi$$，horizon$$h$$，state $$s$$和action$$a$$。
+当$$h=0$$时：
+$$\begin{equation} Q_{\pi}^0=0 \end{equation}$$
+当$$h=1$$时：
+$$\begin{equation} Q_{\pi}^1=R(s,\pi(s))+0 = R(s,a) \end{equation}$$
+当$$h=2$$时：
+$$\begin{equation} Q_{\pi}^2=R(s,\pi(s))+\sum_{s’}T(s,\pi(s),s’)\max_{a'}R(s’,a') \end{equation}$$
+对于任意$$h$$：
+$$\begin{equation} Q_{\pi}^h=R(s,\pi(s))+\sum_{s’}T(s,\pi(s),s’))\max_{a'}Q_{\pi}^{h-1} (s',a') \end{equation}$$
+当有$$n$$个states，$$|S|=n$$,$$m$$个actions，$$|A|=m$$且horizon为$$h$$时，$$Q_{\pi}^h(s,a)$$的时间复杂度为$$O(nmh）$$。
+与State Value Function 类似，当我们考虑$$\gamma$$和$$g$$时：
+$$\begin{equation} Q_{\pi}(s,a)= E_{\pi}[g_t|s_t=s,a_t=a]=E_{\pi}[\sum_k \gamma^k r_{t+k+1}|s_t=s,a_t=a] \end{equation}$$
+
+而$$V_{\pi}(s)$$与$$Q_{\pi}(s,a)$$之间是有联系的，它们之间的关系为：
+$$\begin{equation} V_{\pi}(s)=\sum_a \pi(a|s)Q_{\pi}(s,a) \end{equation}$$
+
 
 
 
@@ -188,22 +220,3 @@ var foo = function (bar) {
 console.log(foo(5));
 $$`R
 
-Unicorn vegan humblebrag whatever microdosing, yr pabst post-ironic chartreuse. IPhone irony fingerstache microdosing juice poutine. Lorem ipsum dolor amet pok pok sriracha drinking vinegar, kogi chia gochujang bicycle rights gentrify shabby chic fingerstache chillwave four loko poke yuccie. La croix hashtag umami, put a bird on it leggings semiotics you probably haven't heard of them wolf iPhone. Beard portland sustainable poke pinterest messenger bag helvetica 8-bit cray. Keffiyeh PBR&B helvetica organic palo santo, art party pop-up letterpress next level VHS selvage snackwave tumblr deep v. Wayfarers irony ramps, flannel shaman drinking vinegar mumblecore tacos single-origin coffee art party lomo master cleanse cardigan taiyaki.
-
-Retro activated charcoal mustache selvage sartorial four loko brooklyn woke dreamcatcher lyft migas VHS. Bitters celiac flannel schlitz aesthetic echo park polaroid. Hella lyft selvage enamel pin banjo before they sold out retro quinoa taiyaki freegan hexagon edison bulb prism. Everyday carry 8-bit actually, godard bitters lomo echo park kickstarter tilde.
-
-Gluten-free bicycle rights kogi ramps chartreuse lyft. Art party literally etsy, truffaut migas normcore copper mug single-origin coffee pickled. Pop-up godard activated charcoal vinyl, kombucha chicharrones cray brooklyn hell of mustache banh mi lo-fi small batch. Ugh literally cred gluten-free. Bitters humblebrag skateboard letterpress biodiesel enamel pin single-origin coffee umami irony meditation neutra freegan deep v dreamcatcher. Pok pok celiac church-key lomo XOXO squid intelligentsia kale chips bushwick. Tacos brooklyn edison bulb glossier, snackwave franzen taxidermy kombucha lo-fi twee yr.
-
-![]({{site.baseurl}}/img/04.jpg)
-
-Typewriter jean shorts literally godard la croix. Put a bird on it wayfarers distillery taiyaki knausgaard +1, hella fixie. Gochujang vape poke poutine lyft, pour-over shabby chic coloring book tote bag fixie. Activated charcoal echo park post-ironic cardigan, flexitarian banjo knausgaard fashion axe hammock live-edge YOLO forage fixie everyday carry.
-
-Kickstarter +1 brunch hell of twee asymmetrical cardigan hella forage humblebrag. Tumeric jianbing mustache selfies, blog freegan brooklyn typewriter air plant ennui. Poke snackwave chia vaporware normcore. Chambray brooklyn poutine polaroid. Locavore shoreditch deep v hexagon live-edge freegan af raw denim chicharrones drinking vinegar leggings master cleanse aesthetic pug. Taiyaki offal twee lomo, hell of lyft kogi vegan keytar before they sold out XOXO godard. Slow-carb quinoa pitchfork tumblr biodiesel.
-
-Live-edge williamsburg semiotics organic. Blue bottle thundercats flexitarian, pinterest YOLO meh vice truffaut selvage selfies wolf tousled. Whatever viral farm-to-table pork belly humblebrag prism vape squid, edison bulb sriracha flexitarian vexillologist vice. Locavore blog wolf bicycle rights yr literally vaporware vinyl.
-
-Next level lo-fi yuccie bitters echo park tacos single-origin coffee man braid sartorial. Kale chips PBR&B ethical banjo chia hot chicken paleo small batch synth drinking vinegar. Chartreuse gluten-free flannel, mumblecore whatever pug umami butcher neutra. Hoodie banjo tacos, stumptown readymade distillery fashion axe af deep v hot chicken seitan tofu. Listicle vape portland, art party mlkshk yuccie YOLO austin 8-bit. Vaporware vinyl artisan, roof party deep v banjo cronut.
-
-Letterpress next level master cleanse mlkshk echo park celiac chillwave cray 90's chia deep v. Lyft austin sustainable banh mi lomo street art kickstarter synth portland chambray chia trust fund try-hard jean shorts. Fanny pack synth vegan four loko, farm-to-table ugh celiac pitchfork chambray beard cred prism readymade roof party typewriter. Swag tofu vaporware, lo-fi yr single-origin coffee salvia etsy artisan tattooed. Hella schlitz shoreditch disrupt leggings roof party kickstarter taiyaki swag four dollar toast +1 fixie humblebrag. Pour-over air plant literally bespoke hella raw denim. Sustainable fam everyday carry, typewriter kinfolk narwhal direct trade.
-
-Man braid sustainable affogato pinterest leggings. Shabby chic kombucha drinking vinegar, migas helvetica franzen vice pabst. Fashion axe YOLO hexagon ramps. Keffiyeh gluten-free williamsburg kombucha. Pickled mustache mlkshk yr gastropub occupy retro four dollar toast kogi normcore. Austin skateboard franzen enamel pin lomo literally aesthetic tattooed typewriter blog quinoa humblebrag ethical freegan authentic. Vaporware crucifix 90's, venmo adaptogen bitters migas.
