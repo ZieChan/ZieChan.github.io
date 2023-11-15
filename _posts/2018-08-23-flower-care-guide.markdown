@@ -4,6 +4,7 @@ title:  Flower Care Guide
 date:   2018-08-23 16:02:00 +0300
 image:  07.jpg
 tags:   [Guide, Flowers]
+usemath: latex
 ---
 
 # Reinforcement Learning 理论学习笔记
