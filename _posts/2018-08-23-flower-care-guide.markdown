@@ -26,7 +26,7 @@ usemath: latex
 让我们假设下面这种情景：某个机器人存在三种状态（state），即$$state = S = \{ standing, moving, fallen\}$$，两种动作（action），即$$action = A = \{ slow, fast\}$$。而每个状态（state）下的做出各个动作（action）的概率在Markov Process中是已知的。
 
 ![]({{site.baseurl}}/img/20231114222135.jpg)
-_Figure 1_ A Markov Process defined by a set of states
+_Figure 1 A Markov Process defined by a set of states_
 
 在图1中，橙色的线条代表着slow，紫色的线条代表着fast。因此在此情景下的transition matrix 为：
 
