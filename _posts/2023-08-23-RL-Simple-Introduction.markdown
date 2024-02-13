@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Reinforcement Learning 简单介绍
+title:  Reinforcement Learning simple introduction
 date:   2023-08-23 16:02:00 +0300
 image:  07.jpg
 tags:   [Guide, Flowers]
