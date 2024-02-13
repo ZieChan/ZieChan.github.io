@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Reinforcement Learning 简单介绍
-date:   2025-08-23 16:02:00 +0300
+date:   2023-08-23 16:02:00 +0300
 image:  07.jpg
 tags:   [Guide, Flowers]
 usemath: latex
