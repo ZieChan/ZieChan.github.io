@@ -1,10 +1,9 @@
 ---
 layout: post
-title:  Reinforcement Learning (RL) study note 1
+title:  Reinforcement Learning (RL) study note 1 (MBRL)
 date:   2024-02-01 00:00:50 +0300
 image:  04.jpg
 tags:   [RL]
-usemath: latex
 ---
 # 1 The RL Ontology
 ![]({{site.baseurl}}/img/RL-Note1-1.png)
@@ -17,12 +16,11 @@ usemath: latex
 - Go to Step 1 after collecting more data.
 
 So the notation of MBRL can be written as:
-- Real world $$M = (P, r)$$
-- Learned world $$\hat{M} = (\hat{P}, \hat{r})$$
-- Find the optimal policy in $$\hat{M}$ : $ \hat{\pi}={argmax}_{\pi} V^{\pi}_{\hat{M}} $$
+- Real world $M = (P, r)$
+- Learned world $\hat{M} = (\hat{P}, \hat{r})$
+- Find the optimal policy in $\hat{M}$ : $ \hat{\pi}=\argmax_{\pi} V^{\pi}_{\hat{M}} $
 
 **Simulation Lemma:**
-
 $$\max_s V^*_M(s)-V^{\hat{\pi}}_M(s) \le \frac{\gamma}{1-\gamma}\max_{s,a} \left \| P(\cdot \mid s,a) - \hat{P}(\cdot \mid s,a)  \right \|_1 \cdot \left \| V^* \right \|_\infty $$
 
 ## 2.2 Does it work in practice?
