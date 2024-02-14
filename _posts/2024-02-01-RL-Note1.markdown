@@ -17,11 +17,12 @@ usemath: latex
 - Go to Step 1 after collecting more data.
 
 So the notation of MBRL can be written as:
-- Real world $M = (P, r)$
-- Learned world $\hat{M} = (\hat{P}, \hat{r})$
-- Find the optimal policy in $\hat{M}$ : $ \hat{\pi}=\argmax_{\pi} V^{\pi}_{\hat{M}} $
+- Real world $$M = (P, r)$$
+- Learned world $$\hat{M} = (\hat{P}, \hat{r})$$
+- Find the optimal policy in $$\hat{M}$ : $ \hat{\pi}=\argmax_{\pi} V^{\pi}_{\hat{M}} $$
 
 **Simulation Lemma:**
+
 $$\max_s V^*_M(s)-V^{\hat{\pi}}_M(s) \le \frac{\gamma}{1-\gamma}\max_{s,a} \left \| P(\cdot \mid s,a) - \hat{P}(\cdot \mid s,a)  \right \|_1 \cdot \left \| V^* \right \|_\infty $$
 
 ## 2.2 Does it work in practice?
