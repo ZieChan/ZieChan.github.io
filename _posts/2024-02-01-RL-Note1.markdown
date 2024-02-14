@@ -4,6 +4,7 @@ title:  Reinforcement Learning (RL) study note 1
 date:   2024-02-01 00:00:50 +0300
 image:  04.jpg
 tags:   [RL]
+usemath: latex
 ---
 # 1 The RL Ontology
 ![]({{site.baseurl}}/img/RL-Note1-1.png)
