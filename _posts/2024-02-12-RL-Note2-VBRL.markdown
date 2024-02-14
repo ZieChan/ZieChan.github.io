@@ -4,6 +4,7 @@ title:  Reinforcement Learning (RL) study note 2 (VBRL)
 date:   2024-02-12 00:00:50 +0300
 image:  04.jpg
 tags:   [RL]
+usemath: latex
 ---
 
 ![]({{site.baseurl}}/img/RL-Note1-1.png)
