@@ -71,3 +71,93 @@ In fact, Q-Learning is known to diverge under function approximation.
 And Q-Learning can fail under function approximation:
 ![]({{site.baseurl}}/img/RL-Note2-fail.png)
 
+# 3 What happens beyond the tabular setting
+
+**Value-based RL may fail:**
+1. They might not converge (algorithm-specific: Q-Learning).
+2. They might not converge to the correct solution (all value-based RL).
+
+## Failure examples
+### MDP: 2 states, 1 action.
+![]({{site.baseurl}}/img/RL-Note2-fail.png)
+- **Realizable** Linear Function Approximation: $$Q(s,a) = \phi(s,a)^Tw$$
+
+$$ Q^{(0)}(s,a)=\phi w^{(0)}, w^{(0)}>0, \gamma = 0.9  $$
+
+step 1:$$ (s1, \alpha, s_2, \gamma ) $$
+
+$$ \begin{split} Q^{(1)}(s_1) &= (1-\alpha)(1\cdot w^{(0)})+\alpha (0+\gamma \cdot 2 w^{(0)}) \\
+&= (1+0.8\alpha)\cdot w^{(0)} \end{split} $$
+
+$$ w^{(1)} = (1+0.8\alpha)\cdot w^{(0)} $$
+
+step 2:$$ (s1, \alpha, s_2, \gamma ) $$
+
+$$ Q^{(2)} = (1-\alpha)(2\cdot w^{(1)})+\alpha \gamma w^{(1)} $$
+$$ w^{(2)} = (1-0.55\alpha)w^{(1)} $$
+$$ w^{(1)} = x\cdot w^{(0)} $$
+
+$$ \begin{split} Q^{(2)} &= (1-\alpha) Q^{(1)}(s_1)+\alpha \gamma Q^{(0)}(s_2)\\
+&= (1-\alpha) w^{(1)}+\alpha \gamma w^{(0)}\\
+&\le w^{(1)}
+\end{split}$$
+when $$\alpha w^{(1)} > 2\alpha \gamma w^{(0)} $$
+
+![]({{site.baseurl}}/img/RL-Note2-fail2.png)
+
+### Bellman-Completeness
+- A Q function class $$\mathcal{F}$$ is **Bellman-Completeness** if
+- For any $$f \in \mathcal{F} $$, there exists $$g \in \mathcal{F} $$, such that
+
+$$g(s,a)=(\tau f)(s,a) = r(s,a) + E_{s'\sim P(s'\mid s,a)}\left[ \max_{a'} f(s',a') \right] $$
+
+$$\tau f (s_1) = 0+f(s_2) = 2 \cdot \gamma \cdot w $$
+
+$$\begin{split} \tau f (s_2) &= 0+ [(1-\varepsilon)w+\varepsilon \cdot 2 \cdot w]\gamma\\
+&= \gamma (1-\varepsilon)w \end{split}$$
+
+$$\mathcal{F}=\{f(s)\mid f(s) = \phi(s)\cdot w \} , \tau f \notin \mathcal{F},\left(\tau f(2) \not = 2 \tau f(1)\right)$$
+
+- In other words, $$\mathcal{F}$$ is **closed** under Bellman operator $$\tau$$.
+
+- Completeness is **not monotone**, so having a rich function class won't help.
+
+![]({{site.baseurl}}/img/RL-Note2-BC.png)
+
+- Theorem (Foster et al., 2022). Value-based method can fail without Bellman-Completeness.
+
+- They contrasted an failure example, where any algorithm require at least $$|S|^{1/3}$$ samples to learn a good policy.
+- This is an **algorithm-independent** result.
+
+So, to the FQI and Q-learning:
+1. FQI requires storing all historical data, which is memory inefficient.
+2. Q-learning converges just fine in the tabular setting.
+
+# 4 To make Q-learning converge
+
+## 4.1 Trick 1: Target network (two time-scale update rule)
+
+$$Q^{(t+1)}(s_t,a_t) = Q^{(t)}(s_t, a_t) + \alpha_t(s_t, a_t)\left ( r_t+\gamma \max_{a'}T^{(t)}(s'_t,a') - Q^{(t)}(s_t, a_t) \right) $$
+
+$$T^{(t+1)}(s_t,a_t) =  Q^{(t)}(s_t, a_t) + \beta_t(s_t, a_t)\left ( Q^{(t)}(s_t,a_t)+ T^{(t)}(s_t,a) \right) $$
+
+It is a slowly updating target network.
+
+## 4.2 Trick 2: Double Q-learning
+
+$$Q^{(t+1)}(s_t,a_t) = Q^{(t)}(s_t, a_t) + \alpha_t(s_t, a_t)\left ( r_t+\gamma T^{(t)}(s'_t,a') - Q^{(t)}(s_t, a_t) \right) $$
+
+$$T^{(t+1)}(s_t,a_t) =  Q^{(t)}(s_t, a_t) + \beta_t(s_t, a_t)\left ( Q^{(t)}(s_t,a_t)+ T^{(t)}(s_t,a) \right) $$
+
+$$a'={argmax}_a Q^{(t)}(s'_t,a) $$
+
+## 4.3 Baseline 3: Inverse double Q-learning
+
+$$Q^{(t+1)}(s_t,a_t) = Q^{(t)}(s_t, a_t) + \alpha_t(s_t, a_t)\left ( r_t+\gamma Q^{(t)}(s'_t,a') - Q^{(t)}(s_t, a_t) \right) $$
+
+$$T^{(t+1)}(s_t,a_t) =  Q^{(t)}(s_t, a_t) + \beta_t(s_t, a_t)\left ( Q^{(t)}(s_t,a_t)+ T^{(t)}(s_t,a) \right) $$
+
+$$a'={argmax}_a T^{(t)}(s'_t,a) $$
+
+![]({{site.baseurl}}/img/RL-Note2-Converge.png)
+
