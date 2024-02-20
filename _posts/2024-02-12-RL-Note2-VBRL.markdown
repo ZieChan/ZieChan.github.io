@@ -126,7 +126,7 @@ $$\mathcal{F}=\{f(s)\mid f(s) = \phi(s)\cdot w \} , \tau f \notin \mathcal{F},\l
 
 - Theorem (Foster et al., 2022). Value-based method can fail without Bellman-Completeness.
 
-- They contrasted an failure example, where any algorithm require at least $$|S|^{1/3}$$ samples to learn a good policy.
+- They contrasted an failure example, where any algorithm require at least $$\mid S\mid^{1/3}$$ samples to learn a good policy.
 - This is an **algorithm-independent** result.
 
 So, to the FQI and Q-learning:
