@@ -10,7 +10,8 @@ profile:
   image_circular: false # crops the image to make it circular
   more_info: >
     <p>Research Assistant</p>
-    <p>HKUST(GZ)</p>
+    <p>HKUST (GZ)</p>
+    <p>Email: ziechan [at] gmail.com</p>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
@@ -26,7 +27,4 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am a Research Assistant at HKUST(GZ). My research interests focus on the theory and applications of large language models (LLMs) and AI4Science. My interests lie in enhancing the capabilities of AI through efficient model design. I am particularly passionate about integrating mathematical theories with machine learning to push the boundaries of what AI systems can achieve.
-
-Outside of my academic pursuits, I enjoy staying active by playing badminton, soccer, and basketball. I also love photography and cooking.
-
+Write your biography here. Tell the world about yourself. Link to your favorite.
